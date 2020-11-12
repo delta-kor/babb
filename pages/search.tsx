@@ -15,7 +15,7 @@ export default function Search({ schools }) {
 }
 
 Search.getInitialProps = async ({ query }) => {
-  const res: AxiosResponse<ApiSearch> = await axios.get('http://localhost:3000/api/search', {
+  const res: AxiosResponse<ApiSearch> = await axios.get('https://babb.ga/api/search', {
     params: { q: query.q },
   });
   return {
