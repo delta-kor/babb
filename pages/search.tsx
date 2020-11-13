@@ -1,26 +1,25 @@
-import axios, { AxiosResponse } from 'axios';
-import { ApiSearch, ApiSearchItem } from '../types/api';
-import Local from '../local';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
 import PageTitle from '../components/atoms/PageTitle';
+import SearchInput from '../components/atoms/Search';
 
-export default function Search({ schools }) {
-  const data: ApiSearchItem[] = schools;
+const InputWrapper = styled.div`
+  padding: 0 24px;
+`;
+
+export default function Search() {
+  const router = useRouter();
+
+  function onSearch(query: string) {
+    router.push(`/search?q=${query}`);
+  }
 
   return (
     <>
       <PageTitle content={'babb.ga'} />
-      {data.map(item => (
-        <p>{item.name}</p>
-      ))}
+      <InputWrapper>
+        <SearchInput onSearch={onSearch} />
+      </InputWrapper>
     </>
   );
 }
-
-Search.getInitialProps = async ({ query }) => {
-  const res: AxiosResponse<ApiSearch> = await axios.get(`${Local.API_ENDPOINT}/api/search`, {
-    params: { q: query.q },
-  });
-  return {
-    schools: res.data.result,
-  };
-};

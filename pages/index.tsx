@@ -14,7 +14,6 @@ const Center = styled.div`
 const InputWrapper = styled.div`
   margin: 15px auto 0 auto;
   padding: 0 24px;
-  max-width: 580px;
 `;
 
 export default function Index() {
