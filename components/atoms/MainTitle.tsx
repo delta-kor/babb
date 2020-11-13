@@ -12,6 +12,7 @@ const Title = styled.h1`
   left: 15px;
   right: 15px;
   top: calc(50% - 70px / 2);
+  font-family: Noto Sans KR, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
