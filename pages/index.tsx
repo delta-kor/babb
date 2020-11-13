@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import MainTitle from '../components/atoms/MainTitle';
 import Search from '../components/atoms/Search';
@@ -17,11 +18,17 @@ const InputWrapper = styled.div`
 `;
 
 export default function Index() {
+  const router = useRouter();
+
+  function onSearch(query: string) {
+    router.push(`/search?q=${query}`);
+  }
+
   return (
     <Center>
       <MainTitle content={'babb.ga'} />
       <InputWrapper>
-        <Search onSearch={q => console.log(q)} />
+        <Search onSearch={onSearch} />
       </InputWrapper>
     </Center>
   );
