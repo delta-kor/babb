@@ -8,6 +8,7 @@ const Layout = styled.div`
 
 const Title = styled.h1`
   position: absolute;
+  margin: 0;
   height: 70px;
   left: 15px;
   right: 15px;
