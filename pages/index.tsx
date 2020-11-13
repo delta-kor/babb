@@ -21,7 +21,7 @@ export default function Index() {
     <Center>
       <MainTitle content={'babb.ga'} />
       <InputWrapper>
-        <Search />
+        <Search onSearch={q => console.log(q)} />
       </InputWrapper>
     </Center>
   );
