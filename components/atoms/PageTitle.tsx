@@ -3,21 +3,20 @@ import styled from 'styled-components';
 
 const Layout = styled.div`
   position: relative;
-  height: 100px;
+  height: 64px;
   background: #ffffff;
 `;
 
 const Title = styled.h1`
   position: absolute;
-  height: 70px;
-  left: 15px;
-  right: 15px;
-  top: calc(50% - 70px / 2);
+  height: 35px;
+  left: 24px;
+  right: 24px;
+  top: calc(50% - 35px / 2 + 0.5px);
   font-style: normal;
   font-weight: 500;
-  font-size: 48px;
-  line-height: 70px;
-  text-align: center;
+  font-size: 24px;
+  line-height: 35px;
   color: #1287f3;
 `;
 
@@ -25,7 +24,7 @@ interface Props {
   content: string;
 }
 
-export default class MainTitle extends Component<Props, any> {
+export default class PageTitle extends Component<Props, any> {
   render() {
     return (
       <Layout>

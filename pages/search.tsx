@@ -1,13 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
 import { ApiSearch, ApiSearchItem } from '../types/api';
 import Local from '../local';
+import PageTitle from '../components/atoms/PageTitle';
 
 export default function Search({ schools }) {
   const data: ApiSearchItem[] = schools;
 
   return (
     <>
-      <h1>검색</h1>
+      <PageTitle content={'babb.ga'} />
       {data.map(item => (
         <p>{item.name}</p>
       ))}

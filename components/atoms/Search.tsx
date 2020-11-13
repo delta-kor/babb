@@ -10,30 +10,28 @@ const Layout = styled.div`
 
 const Input = styled.input`
   position: absolute;
-  padding: 0;
   height: 23px;
   width: calc(100% - 24px - 58px);
   left: 24px;
   top: calc(50% - 23px / 2 + 0.5px);
-  font-family: Noto Sans KR, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 23px;
   background: none;
   border: none;
-  outline: none;
   color: #747474;
 `;
 
 const Icon = styled.img`
   position: absolute;
+  box-sizing: content-box;
+  padding: 12px;
   width: 18px;
   height: 18px;
   right: 12px;
   top: calc(50% - 42px / 2);
   cursor: pointer;
-  padding: 12px;
 `;
 
 interface Props {
