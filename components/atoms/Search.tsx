@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Layout = styled.div`
   position: relative;
-  width: 366px;
   height: 50px;
   background: #f9f9f9;
   border-radius: 8px;
@@ -11,9 +10,9 @@ const Layout = styled.div`
 
 const Input = styled.input`
   position: absolute;
-  display: block;
-  width: 284px;
+  padding: 0;
   height: 23px;
+  width: calc(100% - 24px - 58px);
   left: 24px;
   top: calc(50% - 23px / 2 + 0.5px);
   font-family: Noto Sans KR, sans-serif;
