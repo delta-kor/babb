@@ -22,7 +22,7 @@ function buildItem(source: any, type: SchoolType): ApiSearchItem {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const query = req.query.q as string;
 
-  if (!query.trim()) {
+  if (!query || !query.trim()) {
     const body: ApiSearch = {
       status: 1,
     };

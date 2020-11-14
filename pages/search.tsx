@@ -1,18 +1,43 @@
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Local from '../local';
+import axios, { AxiosResponse } from 'axios';
+import { ApiSearch } from '../types/api';
 import styled from 'styled-components';
 import PageTitle from '../components/atoms/PageTitle';
 import SearchInput from '../components/atoms/Search';
+import SearchItem from '../components/atoms/SearchItem';
 
 const InputWrapper = styled.div`
   padding: 0 24px;
 `;
 
-export default function Search() {
+const SearchItemWrapper = styled.div`
+  padding: 33px 0 0 0;
+`;
+
+export default function Search({ query }) {
   const router = useRouter();
+  const [items, setItems] = useState([]);
 
   function onSearch(query: string) {
     router.push(`/search?q=${query}`);
   }
+
+  useEffect(() => {
+    const request: Promise<AxiosResponse<ApiSearch>> = axios.get(
+      `${Local.API_ENDPOINT}/api/search`,
+      {
+        params: { q: query },
+      }
+    );
+
+    request.then(res => {
+      if (res.data.status === 0) {
+        setItems(res.data.result.map(item => <SearchItem data={item} />));
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -20,6 +45,11 @@ export default function Search() {
       <InputWrapper>
         <SearchInput onSearch={onSearch} />
       </InputWrapper>
+      <SearchItemWrapper>{items}</SearchItemWrapper>
     </>
   );
 }
+
+Search.getInitialProps = ({ query }) => {
+  return { query: query.q };
+};
