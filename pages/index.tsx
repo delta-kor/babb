@@ -17,17 +17,11 @@ const InputWrapper = styled.div`
 `;
 
 export default function Index() {
-  const router = useRouter();
-
-  function onSearch(query: string) {
-    router.push(`/search?q=${query}`);
-  }
-
   return (
     <Center>
       <MainTitle content={'babb.ga'} />
       <InputWrapper>
-        <Search onSearch={onSearch} />
+        <Search />
       </InputWrapper>
     </Center>
   );

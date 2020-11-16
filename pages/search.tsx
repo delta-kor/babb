@@ -17,12 +17,7 @@ const SearchItemWrapper = styled.div`
 `;
 
 export default function Search({ query }) {
-  const router = useRouter();
   const [items, setItems] = useState([]);
-
-  function onSearch(query: string) {
-    router.push(`/search?q=${query}`);
-  }
 
   useEffect(() => {
     const request: Promise<AxiosResponse<ApiSearch>> = axios.get(
@@ -34,7 +29,7 @@ export default function Search({ query }) {
 
     request.then(res => {
       if (res.data.status === 0) {
-        setItems(res.data.result.map(item => <SearchItem data={item} />));
+        setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
       }
     });
   }, []);
@@ -43,7 +38,7 @@ export default function Search({ query }) {
     <>
       <PageTitle content={'babb.ga'} />
       <InputWrapper>
-        <SearchInput onSearch={onSearch} />
+        <SearchInput />
       </InputWrapper>
       <SearchItemWrapper>{items}</SearchItemWrapper>
     </>

@@ -1,5 +1,6 @@
 import { ChangeEvent, Component } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const Layout = styled.div`
   position: relative;
@@ -34,24 +35,15 @@ const Icon = styled.img`
   cursor: pointer;
 `;
 
-interface Props {
-  onSearch?(query: string): void;
-}
-
 interface State {
   query: string;
 }
 
-export default class Search extends Component<Props, State> {
+export default class Search extends Component<any, State> {
   constructor(props) {
     super(props);
     this.state = { query: '' };
   }
-
-  onSearch = () => {
-    const query = this.state?.query;
-    this.props.onSearch(query || null);
-  };
 
   onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -63,7 +55,9 @@ export default class Search extends Component<Props, State> {
     return (
       <Layout>
         <Input type={'text'} placeholder={'학교검색'} onChange={this.onChange} />
-        <Icon src={'/icons/search.svg'} onClick={this.onSearch} />
+        <Link href={`/search?q=${this.state.query}`}>
+          <Icon src={'/icons/search.svg'} />
+        </Link>
       </Layout>
     );
   }
