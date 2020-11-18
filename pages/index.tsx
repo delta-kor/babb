@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import MainTitle from '../components/atoms/MainTitle';
 import Search from '../components/atoms/Search';

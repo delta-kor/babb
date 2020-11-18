@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Local from '../local';
 import axios, { AxiosResponse } from 'axios';
 import { ApiSearch } from '../types/api';
