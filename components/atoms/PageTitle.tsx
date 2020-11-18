@@ -1,10 +1,12 @@
 import { Component } from 'react';
+import Router from 'next/router';
 import styled from 'styled-components';
 
 const Layout = styled.div`
   position: relative;
   height: 64px;
   background: #ffffff;
+  cursor: pointer;
 `;
 
 const Title = styled.h1`
@@ -22,12 +24,23 @@ const Title = styled.h1`
 
 interface Props {
   content: string;
+  href?: string;
 }
 
 export default class PageTitle extends Component<Props, any> {
+  static defaultProps = {
+    href: '/',
+  };
+
+  onClick = () => {
+    if (this.props.href) {
+      Router.push(this.props.href);
+    }
+  };
+
   render() {
     return (
-      <Layout>
+      <Layout onClick={this.onClick}>
         <Title>{this.props.content}</Title>
       </Layout>
     );

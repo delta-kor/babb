@@ -30,8 +30,9 @@ export default function Search({ query }) {
 
     request.then(res => {
       if (res.data.status === 0) {
-        setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
+        return setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
       }
+      setItems([]);
     });
   }, [router.query.q]);
 
