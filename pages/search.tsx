@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Local from '../local';
 import axios, { AxiosResponse } from 'axios';
 import { ApiSearch } from '../types/api';
@@ -17,6 +18,7 @@ const SearchItemWrapper = styled.div`
 
 export default function Search({ query }) {
   const [items, setItems] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const request: Promise<AxiosResponse<ApiSearch>> = axios.get(
@@ -31,13 +33,13 @@ export default function Search({ query }) {
         setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
       }
     });
-  }, []);
+  }, [router.query.q]);
 
   return (
     <>
       <PageTitle content={'babb.ga'} />
       <InputWrapper>
-        <SearchInput />
+        <SearchInput query={query} />
       </InputWrapper>
       <SearchItemWrapper>{items}</SearchItemWrapper>
     </>

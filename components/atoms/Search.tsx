@@ -1,5 +1,6 @@
-import { ChangeEvent, Component } from 'react';
+import { ChangeEvent, KeyboardEvent, Component } from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
 import styled from 'styled-components';
 
 const Layout = styled.div`
@@ -35,14 +36,18 @@ const Icon = styled.img`
   cursor: pointer;
 `;
 
+interface Props {
+  query?: string;
+}
+
 interface State {
   query: string;
 }
 
-export default class Search extends Component<any, State> {
+export default class Search extends Component<Props, State> {
   constructor(props) {
     super(props);
-    this.state = { query: '' };
+    this.state = { query: null };
   }
 
   onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,10 +56,20 @@ export default class Search extends Component<any, State> {
     this.setState({ query: value });
   };
 
+  handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') Router.push(`/search?q=${this.state.query}`);
+  };
+
   render() {
     return (
       <Layout>
-        <Input type={'text'} placeholder={'학교검색'} onChange={this.onChange} />
+        <Input
+          type={'text'}
+          value={this.state.query === null ? this.props.query : this.state.query}
+          placeholder={'학교검색'}
+          onChange={this.onChange}
+          onKeyDown={this.handleEnter}
+        />
         <Link href={`/search?q=${this.state.query}`}>
           <Icon src={'/icons/search.svg'} />
         </Link>
