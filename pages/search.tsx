@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Local from '../local';
-import axios, { AxiosResponse } from 'axios';
-import { ApiSearch } from '../types/api';
 import styled from 'styled-components';
+import axios, { AxiosResponse } from 'axios';
+import Local from '../local';
+import { ApiSearch } from '../types/api';
 import PageTitle from '../components/atoms/PageTitle';
 import SearchInput from '../components/atoms/Search';
 import SearchItem from '../components/atoms/SearchItem';
