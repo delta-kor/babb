@@ -65,7 +65,7 @@ export default class Search extends Component<Props, State> {
       <Layout>
         <Input
           type={'text'}
-          value={this.state.query === null ? this.props.query : this.state.query}
+          value={this.state.query === null ? this.props.query || '' : this.state.query}
           placeholder={'학교검색'}
           onChange={this.onChange}
           onKeyDown={this.handleEnter}
