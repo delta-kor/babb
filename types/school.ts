@@ -15,7 +15,7 @@ const loader = new Promise<Fuse<SchoolDocument>>((resolve, reject) => {
         .exec()
         .then(documents => {
           console.log('Loaded data');
-          resolve(new Fuse(documents, { keys: ['name'] }));
+          resolve(new Fuse(documents, { keys: ['name'], threshold: 0.3 }));
         });
     })
     .catch(reject);
