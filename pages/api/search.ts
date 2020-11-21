@@ -20,6 +20,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     {},
     { skip: page && 10 * page, limit: 10 }
   ).exec();
+
+  const total = await School.find({ name: new RegExp(query, 'gi') }).exec();
+
   const result: ApiSearchItem[] = [];
 
   for (const document of documents) {
@@ -35,6 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const body: ApiSearch = {
     status: 0,
+    total: total.length,
     result,
   };
 

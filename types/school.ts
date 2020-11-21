@@ -1,4 +1,4 @@
-import { Schema, Document, model } from 'mongoose';
+import { Schema, Document, model, Model } from 'mongoose';
 import mongoose from 'mongoose';
 
 mongoose
@@ -28,7 +28,7 @@ const SchoolSchema = new Schema<SchoolDocument>({
   homepage: String,
 });
 
-let School;
+let School: Model<SchoolDocument>;
 
 try {
   School = model<SchoolDocument>('school');

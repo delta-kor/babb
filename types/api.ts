@@ -7,6 +7,7 @@ export enum SchoolType {
 
 export interface ApiSearch {
   status: number;
+  total?: number;
   result?: ApiSearchItem[];
 }
 
