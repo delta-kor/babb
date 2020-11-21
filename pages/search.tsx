@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import axios, { AxiosResponse } from 'axios';
 import Local from '../local';
@@ -21,8 +20,6 @@ export default function Search({ query, page }) {
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
 
-  const router = useRouter();
-
   useEffect(() => {
     const request: Promise<AxiosResponse<ApiSearch>> = axios.get(
       `${Local.API_ENDPOINT}/api/search`,
@@ -38,7 +35,7 @@ export default function Search({ query, page }) {
       }
       setItems([]);
     });
-  }, [router.query.q]);
+  }, [query, page]);
 
   return (
     <>

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Router from 'next/router';
 import styled, { StyledComponent } from 'styled-components';
 
 const InactiveLayout = styled.div`
@@ -67,10 +68,20 @@ const ArrowContent = styled.img`
 
 interface Props {
   type: ListPickerType;
+  total: number;
   number?: number;
 }
 
 export default class ListPicker extends Component<Props, any> {
+  onclick = () => {
+    let page = this.props.number;
+    let current = parseInt(Router.query.page as string) || 1;
+    if (this.props.type === ListPickerType.RIGHT)
+      page = current === Math.floor(this.props.total / 10) + 1 ? current : current + 1;
+    if (this.props.type === ListPickerType.LEFT) page = current === 1 ? current : current - 1;
+    Router.push({ query: { ...Router.query, page } });
+  };
+
   render() {
     let Layout: StyledComponent<'div', any>;
     let Content: JSX.Element;
@@ -101,6 +112,6 @@ export default class ListPicker extends Component<Props, any> {
         break;
     }
 
-    return <Layout>{Content}</Layout>;
+    return <Layout onClick={this.onclick}>{Content}</Layout>;
   }
 }

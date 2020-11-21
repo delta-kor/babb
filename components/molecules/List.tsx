@@ -27,6 +27,7 @@ export default class List extends Component<Props, any> {
         <ListPicker
           type={number === this.props.current ? ListPickerType.ACTIVE : ListPickerType.INACTIVE}
           number={number}
+          total={this.props.total}
           key={number}
         />
       );
@@ -34,9 +35,9 @@ export default class List extends Component<Props, any> {
 
     return (
       <Layout>
-        <ListPicker type={ListPickerType.LEFT} />
+        <ListPicker type={ListPickerType.LEFT} total={this.props.total} />
         {pickers}
-        <ListPicker type={ListPickerType.RIGHT} />
+        <ListPicker type={ListPickerType.RIGHT} total={this.props.total} />
       </Layout>
     );
   }
