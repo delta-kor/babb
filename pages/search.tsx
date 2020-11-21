@@ -32,7 +32,8 @@ export default function Search({ query, page }) {
     request.then(res => {
       if (res.data.status === 0) {
         if (res.data.total && !res.data.result.length) {
-          return Router.push({ query: { ...Router.query, page: 1 } });
+          Router.push({ query: { ...Router.query, page: 1 } });
+          return;
         }
         setTotal(res.data.total);
         return setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
