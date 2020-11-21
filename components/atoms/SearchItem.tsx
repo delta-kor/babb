@@ -19,6 +19,9 @@ const Name = styled.p`
   font-size: 24px;
   line-height: 35px;
   color: #1287f3;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const Address = styled.p`
@@ -32,6 +35,9 @@ const Address = styled.p`
   font-size: 16px;
   line-height: 23px;
   color: #747474;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const Line = styled.div`

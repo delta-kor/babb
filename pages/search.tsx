@@ -9,12 +9,29 @@ import SearchInput from '../components/atoms/Search';
 import SearchItem from '../components/atoms/SearchItem';
 import List from '../components/molecules/List';
 
+const HeaderWrapper = styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 0 0 14px 0;
+  background: #ffffff;
+  z-index: 10;
+`;
+
 const InputWrapper = styled.div`
   padding: 0 24px;
 `;
 
 const SearchItemWrapper = styled.div`
-  padding: 33px 0 0 0;
+  padding: 128px 0 72px 0;
+`;
+
+const ListWrapper = styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 export default function Search({ query, page }) {
@@ -44,12 +61,14 @@ export default function Search({ query, page }) {
 
   return (
     <>
-      <PageTitle content={'babb.ga'} />
-      <InputWrapper>
-        <SearchInput query={query} />
-      </InputWrapper>
+      <HeaderWrapper>
+        <PageTitle content={'babb.ga'} />
+        <InputWrapper>
+          <SearchInput query={query} />
+        </InputWrapper>
+      </HeaderWrapper>
       <SearchItemWrapper>{items}</SearchItemWrapper>
-      {items.length > 0 && <List total={total} current={page} />}
+      <ListWrapper>{items.length > 0 && <List total={total} current={page} />}</ListWrapper>
     </>
   );
 }
