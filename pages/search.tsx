@@ -53,5 +53,5 @@ export default function Search({ query, page }) {
 }
 
 Search.getInitialProps = ({ query }) => {
-  return { query: query.q, page: query.page || 1 };
+  return { query: query.q, page: parseInt(query.page) || 1 };
 };

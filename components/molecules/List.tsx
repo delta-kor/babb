@@ -23,7 +23,13 @@ export default class List extends Component<Props, any> {
     for (let i = 1; i <= 5; i++) {
       const number = difference * 5 + i;
       if (number > totalDifference) break;
-      pickers.push(<ListPicker type={ListPickerType.INACTIVE} number={number} key={number} />);
+      pickers.push(
+        <ListPicker
+          type={number === this.props.current ? ListPickerType.ACTIVE : ListPickerType.INACTIVE}
+          number={number}
+          key={number}
+        />
+      );
     }
 
     return (
