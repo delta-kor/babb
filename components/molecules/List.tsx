@@ -4,7 +4,8 @@ import ListPicker, { ListPickerType } from '../atoms/ListPicker';
 
 const Layout = styled.div`
   position: relative;
-  height: 51px;
+  height: 72px;
+  padding: 17px 0;
   background: #ffffff;
   text-align: center;
 `;

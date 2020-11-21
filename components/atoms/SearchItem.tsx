@@ -36,11 +36,11 @@ const Address = styled.p`
 
 const Line = styled.div`
   position: absolute;
-  height: 0;
+  height: 2px;
   left: 24px;
   right: 24px;
   bottom: 0;
-  border: 1px solid #f9f9f9;
+  background: #f9f9f9;
 `;
 
 interface Props {
