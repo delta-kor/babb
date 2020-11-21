@@ -4,8 +4,6 @@ import { ApiSearch, ApiSearchItem } from '../../types/api';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   let query = req.query.q as string;
-  query = query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-
   let page = parseInt(req.query.page as string) - 1 || 0;
 
   if (!query || !query.trim()) {
@@ -14,6 +12,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     };
     return res.json(body);
   }
+
+  query = query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 
   const documents = await School.find(
     { name: new RegExp(query, 'gi') },
