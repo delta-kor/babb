@@ -52,6 +52,7 @@ export default function Search({ query, page }) {
           Router.push({ query: { ...Router.query, page: 1 } });
           return;
         }
+        window.scrollTo(0, 0);
         setTotal(res.data.total);
         return setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
       }
