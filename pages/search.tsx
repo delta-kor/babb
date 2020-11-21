@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Router from 'next/router';
 import styled from 'styled-components';
 import axios, { AxiosResponse } from 'axios';
 import Local from '../local';
@@ -30,6 +31,9 @@ export default function Search({ query, page }) {
 
     request.then(res => {
       if (res.data.status === 0) {
+        if (res.data.total && !res.data.result.length) {
+          return Router.push({ query: { ...Router.query, page: 1 } });
+        }
         setTotal(res.data.total);
         return setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
       }
