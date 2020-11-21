@@ -1,14 +1,25 @@
 import { Schema, Document, model, Model } from 'mongoose';
 import mongoose from 'mongoose';
+import Fuse from 'fuse.js';
 
-mongoose
-  .connect(process.env.DB || 'mongodb://localhost:27017/school', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('Database connected'))
-  .catch(e => console.error(e));
+const loader = new Promise<Fuse<SchoolDocument>>((resolve, reject) => {
+  mongoose
+    .connect(process.env.DB || 'mongodb://localhost:27017/school', {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => {
+      console.log('Database connected');
+      School.find()
+        .exec()
+        .then(documents => {
+          console.log('Loaded data');
+          resolve(new Fuse(documents, { keys: ['name'] }));
+        });
+    })
+    .catch(reject);
+});
 
 export interface SchoolDocument extends Document {
   id: string;
@@ -36,4 +47,4 @@ try {
   School = model<SchoolDocument>('school', SchoolSchema);
 }
 
-export default School;
+export default loader;

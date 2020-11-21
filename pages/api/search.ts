@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import School, { SchoolDocument } from '../../types/school';
+import School from '../../types/school';
 import { ApiSearch, ApiSearchItem } from '../../types/api';
 
-const cache: Map<string, SchoolDocument[]> = new Map();
+async function loader() {
+  return await School;
+}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   let query = req.query.q as string;
@@ -17,25 +19,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   query = query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 
-  let documents: SchoolDocument[] = cache.get(query);
-
-  if (!documents) {
-    documents = await School.find({ name: new RegExp(query, 'gi') }).exec();
-    cache.set(query, documents);
-  }
-
+  const documents = (await loader()).search(query);
   const paged = documents.slice(page * 10, page * 10 + 10);
 
   const result: ApiSearchItem[] = [];
 
   for (const document of paged) {
+    const item = document.item;
     result.push({
-      id: document.id,
-      type: document.type,
-      name: document.name,
-      tel: document.tel,
-      address: document.address,
-      homepage: document.homepage,
+      id: item.id,
+      type: item.type,
+      name: item.name,
+      tel: item.tel,
+      address: item.address,
+      homepage: item.homepage,
     });
   }
 
