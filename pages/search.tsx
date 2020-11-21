@@ -49,7 +49,7 @@ export default function Search({ query, page }) {
         <SearchInput query={query} />
       </InputWrapper>
       <SearchItemWrapper>{items}</SearchItemWrapper>
-      <List total={total} current={page} />
+      {items.length > 0 && <List total={total} current={page} />}
     </>
   );
 }
