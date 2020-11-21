@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import School from '../../types/school';
+import School, { SchoolDocument } from '../../types/school';
 import { ApiSearch, ApiSearchItem } from '../../types/api';
+
+const cache: Map<string, SchoolDocument[]> = new Map();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   let query = req.query.q as string;
@@ -15,17 +17,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   query = query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 
-  const documents = await School.find(
-    { name: new RegExp(query, 'gi') },
-    {},
-    { skip: page && 10 * page, limit: 10 }
-  ).exec();
+  let documents: SchoolDocument[] = cache.get(query);
 
-  const total = await School.find({ name: new RegExp(query, 'gi') }).exec();
+  if (!documents) {
+    documents = await School.find({ name: new RegExp(query, 'gi') }).exec();
+    cache.set(query, documents);
+  }
+
+  const paged = documents.slice(page * 10, page * 10 + 10);
 
   const result: ApiSearchItem[] = [];
 
-  for (const document of documents) {
+  for (const document of paged) {
     result.push({
       id: document.id,
       type: document.type,
@@ -38,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const body: ApiSearch = {
     status: 0,
-    total: total.length,
+    total: documents.length,
     result,
   };
 
