@@ -34,6 +34,15 @@ const Address = styled.p`
   color: #747474;
 `;
 
+const Line = styled.div`
+  position: absolute;
+  height: 0;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  border: 1px solid #f9f9f9;
+`;
+
 interface Props {
   data: ApiSearchItem;
 }
@@ -44,6 +53,7 @@ export default class SearchItem extends Component<Props, any> {
       <Layout>
         <Name>{this.props.data.name}</Name>
         <Address>{this.props.data.address}</Address>
+        <Line />
       </Layout>
     );
   }
