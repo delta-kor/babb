@@ -1,18 +1,6 @@
 import { Component } from 'react';
 import styled, { StyledComponent } from 'styled-components';
 
-export enum ListPickerType {
-  INACTIVE,
-  ACTIVE,
-  LEFT,
-  RIGHT,
-}
-
-interface Props {
-  type: ListPickerType;
-  number?: number;
-}
-
 const InactiveLayout = styled.div`
   position: relative;
   display: inline-block;
@@ -62,6 +50,13 @@ const InactiveContent = styled.p`
   color: #1287f3;
 `;
 
+export enum ListPickerType {
+  INACTIVE,
+  ACTIVE,
+  LEFT,
+  RIGHT,
+}
+
 const ArrowContent = styled.img`
   position: absolute;
   width: 25px;
@@ -69,6 +64,11 @@ const ArrowContent = styled.img`
   left: calc(50% - 25px / 2);
   top: calc(50% - 25px / 2);
 `;
+
+interface Props {
+  type: ListPickerType;
+  number?: number;
+}
 
 export default class ListPicker extends Component<Props, any> {
   render() {
