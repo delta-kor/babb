@@ -46,13 +46,23 @@ const Description = styled.p`
   color: #747474;
 `;
 
-export default class NotFoundItem extends Component<any, any> {
+interface Props {
+  title: string;
+  description: string;
+}
+
+export default class NotFoundItem extends Component<Props, any> {
+  static defaultProps = {
+    title: '검색 결과가 없습니다',
+    description: '다른 검색어를 사용해 보세요',
+  };
+
   render() {
     return (
       <Layout>
         <Emoji src={'/emojis/thinking.svg'} />
-        <Title>검색 결과가 없습니다</Title>
-        <Description>다른 검색어를 사용해 보세요</Description>
+        <Title>{this.props.title}</Title>
+        <Description>{this.props.description}</Description>
       </Layout>
     );
   }

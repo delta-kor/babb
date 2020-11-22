@@ -1,5 +1,4 @@
 import { ChangeEvent, KeyboardEvent, Component } from 'react';
-import Link from 'next/link';
 import Router from 'next/router';
 import styled from 'styled-components';
 
@@ -56,8 +55,12 @@ export default class Search extends Component<Props, State> {
     this.setState({ query: value });
   };
 
+  onSearch = () => {
+    if (this.state.query?.trim()) Router.push(`/search?q=${this.state.query}`);
+  };
+
   handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') Router.push(`/search?q=${this.state.query}`);
+    if (e.key === 'Enter') this.onSearch();
   };
 
   render() {
@@ -70,9 +73,7 @@ export default class Search extends Component<Props, State> {
           onChange={this.onChange}
           onKeyDown={this.handleEnter}
         />
-        <Link href={`/search?q=${this.state.query}`}>
-          <Icon src={'/icons/search.svg'} alt={'검색'} />
-        </Link>
+        <Icon src={'/icons/search.svg'} alt={'검색'} onClick={this.onSearch} />
       </Layout>
     );
   }

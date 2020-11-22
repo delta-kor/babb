@@ -56,9 +56,18 @@ export default function Search({ query, page }) {
         window.scrollTo(0, 0);
         setTotal(res.data.total);
         if (!res.data.total) {
-          return setItems([<NotFoundItem />]);
+          return setItems([<NotFoundItem key={'not found'} />]);
         }
         return setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
+      }
+      if (res.data.status === 1) {
+        return setItems([
+          <NotFoundItem
+            title={'잘못된 요청입니다'}
+            description={'나중에 다시 시도해주세요'}
+            key={'error'}
+          />,
+        ]);
       }
       setItems([]);
     });
