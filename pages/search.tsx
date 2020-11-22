@@ -12,10 +12,9 @@ import NotFoundItem from '../components/atoms/NotFoundItem';
 
 const HeaderWrapper = styled.div`
   position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
   padding: 0 0 14px 0;
+  width: 100%;
+  max-width: 720px;
   background: #ffffff;
   z-index: 10;
 `;
@@ -30,9 +29,9 @@ const SearchItemWrapper = styled.div`
 
 const ListWrapper = styled.div`
   position: fixed;
-  left: 0;
-  right: 0;
   bottom: 0;
+  width: 100%;
+  max-width: 720px;
 `;
 
 export default function Search({ query, page }) {
