@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import { ApiSearchItem } from '../../types/api';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const Layout = styled.div`
   position: relative;
   height: 103px;
   background: #ffffff;
+  cursor: pointer;
 `;
 
 const Name = styled.p`
@@ -56,11 +58,13 @@ interface Props {
 export default class SearchItem extends Component<Props, any> {
   render() {
     return (
-      <Layout>
-        <Name>{this.props.data.name}</Name>
-        <Address>{this.props.data.address}</Address>
-        <Line />
-      </Layout>
+      <Link href={`/school/${this.props.data.id}`}>
+        <Layout>
+          <Name>{this.props.data.name}</Name>
+          <Address>{this.props.data.address}</Address>
+          <Line />
+        </Layout>
+      </Link>
     );
   }
 }
