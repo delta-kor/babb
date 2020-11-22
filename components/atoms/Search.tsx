@@ -71,7 +71,7 @@ export default class Search extends Component<Props, State> {
           onKeyDown={this.handleEnter}
         />
         <Link href={`/search?q=${this.state.query}`}>
-          <Icon src={'/icons/search.svg'} />
+          <Icon src={'/icons/search.svg'} alt={'검색'} />
         </Link>
       </Layout>
     );
