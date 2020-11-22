@@ -60,16 +60,13 @@ export default function Search({ query, page }) {
         }
         return setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
       }
-      if (res.data.status === 1) {
-        return setItems([
-          <NotFoundItem
-            title={'잘못된 요청입니다'}
-            description={'나중에 다시 시도해주세요'}
-            key={'error'}
-          />,
-        ]);
-      }
-      setItems([]);
+      return setItems([
+        <NotFoundItem
+          title={'잘못된 요청입니다'}
+          description={'나중에 다시 시도해주세요'}
+          key={'error'}
+        />,
+      ]);
     });
   }, [query, page]);
 
