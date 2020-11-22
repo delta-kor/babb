@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const Layout = styled.div`
   position: absolute;
-  height: 256px;
   left: 0;
   right: 0;
-  top: calc(50% - 256px / 2);
+  top: 128px;
+  bottom: 0;
   background: #ffffff;
 `;
 
