@@ -47,7 +47,7 @@ interface State {
 export default class Search extends Component<Props, State> {
   constructor(props) {
     super(props);
-    this.state = { query: null };
+    this.state = { query: this.props.query || null };
   }
 
   onChange = (e: ChangeEvent<HTMLInputElement>) => {

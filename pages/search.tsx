@@ -8,6 +8,7 @@ import PageTitle from '../components/atoms/PageTitle';
 import SearchInput from '../components/atoms/Search';
 import SearchItem from '../components/atoms/SearchItem';
 import List from '../components/molecules/List';
+import NotFoundItem from '../components/atoms/NotFoundItem';
 
 const HeaderWrapper = styled.div`
   position: fixed;
@@ -54,6 +55,9 @@ export default function Search({ query, page }) {
         }
         window.scrollTo(0, 0);
         setTotal(res.data.total);
+        if (!res.data.total) {
+          return setItems([<NotFoundItem />]);
+        }
         return setItems(res.data.result.map(item => <SearchItem data={item} key={item.id} />));
       }
       setItems([]);
@@ -69,7 +73,7 @@ export default function Search({ query, page }) {
         </InputWrapper>
       </HeaderWrapper>
       <SearchItemWrapper>{items}</SearchItemWrapper>
-      <ListWrapper>{items.length > 0 && <List total={total} current={page} />}</ListWrapper>
+      <ListWrapper>{total > 0 && <List total={total} current={page} />}</ListWrapper>
     </>
   );
 }
