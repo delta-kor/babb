@@ -68,8 +68,8 @@ export default function Search({ query, page }) {
     <>
       <Meta
         content={{
-          title: `${query} 검색 결과`,
-          description: 'babb.ga :: 우리 학교 급식 찾기',
+          title: `${query} 검색 결과 | babb.ga`,
+          description: 'babb.ga | 우리 학교 급식 찾기',
         }}
       />
       <HeaderWrapper>

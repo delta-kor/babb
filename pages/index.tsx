@@ -19,7 +19,7 @@ const InputWrapper = styled.div`
 export default function Index() {
   return (
     <>
-      <Meta content={{ title: 'babb.ga :: 오늘의 급식', description: '우리 학교 급식 찾기' }} />
+      <Meta content={{ title: 'babb.ga | 오늘의 급식', description: '우리 학교 급식 찾기' }} />
       <Center>
         <MainTitle content={'babb.ga'} />
         <InputWrapper>
