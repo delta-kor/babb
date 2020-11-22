@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import MainTitle from '../components/atoms/MainTitle';
 import Search from '../components/atoms/Search';
+import Meta from '../components/atoms/Meta';
 
 const Center = styled.div`
   position: absolute;
@@ -17,11 +18,14 @@ const InputWrapper = styled.div`
 
 export default function Index() {
   return (
-    <Center>
-      <MainTitle content={'babb.ga'} />
-      <InputWrapper>
-        <Search />
-      </InputWrapper>
-    </Center>
+    <>
+      <Meta content={{ title: 'babb.ga :: 오늘의 급식', description: '우리 학교 급식 찾기' }} />
+      <Center>
+        <MainTitle content={'babb.ga'} />
+        <InputWrapper>
+          <Search />
+        </InputWrapper>
+      </Center>
+    </>
   );
 }

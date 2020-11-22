@@ -9,6 +9,7 @@ import SearchInput from '../components/atoms/Search';
 import SearchItem from '../components/atoms/SearchItem';
 import List from '../components/molecules/List';
 import NotFoundItem from '../components/atoms/NotFoundItem';
+import Meta from '../components/atoms/Meta';
 
 const HeaderWrapper = styled.div`
   position: fixed;
@@ -65,6 +66,12 @@ export default function Search({ query, page }) {
 
   return (
     <>
+      <Meta
+        content={{
+          title: `${query} 검색 결과`,
+          description: 'babb.ga :: 우리 학교 급식 찾기',
+        }}
+      />
       <HeaderWrapper>
         <PageTitle content={'babb.ga'} />
         <InputWrapper>
