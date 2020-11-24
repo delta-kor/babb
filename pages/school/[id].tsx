@@ -5,7 +5,7 @@ export default function School() {
   const { id } = router.query;
   return (
     <>
-      <p>{id}</p>
+      <h1>{id}</h1>
     </>
   );
 }
