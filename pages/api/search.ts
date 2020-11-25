@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.json(body);
   }
 
-  const documents = (await loader()).search(query);
+  const documents = (await loader()).searcher.search(query);
   const paged = documents.slice(page * 10, page * 10 + 10);
 
   const result: ApiSearchItem[] = [];

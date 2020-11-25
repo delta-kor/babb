@@ -19,3 +19,8 @@ export interface ApiSearchItem {
   address: string;
   homepage: string;
 }
+
+export interface ApiInfo {
+  status: number;
+  result?: ApiSearchItem;
+}

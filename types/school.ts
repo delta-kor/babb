@@ -2,7 +2,21 @@ import { Schema, Document, model, Model } from 'mongoose';
 import mongoose from 'mongoose';
 import Fuse from 'fuse.js';
 
-const loader = new Promise<Fuse<SchoolDocument>>((resolve, reject) => {
+export interface SchoolDocument extends Document {
+  id: string;
+  type: number;
+  name: string;
+  tel: string;
+  address: string;
+  homepage: string;
+}
+
+export interface LoaderResult {
+  searcher: Fuse<SchoolDocument>;
+  id: Fuse<SchoolDocument>;
+}
+
+const loader = new Promise<LoaderResult>((resolve, reject) => {
   mongoose
     .connect(process.env.DB || 'mongodb://localhost:27017/school', {
       useNewUrlParser: true,
@@ -15,20 +29,14 @@ const loader = new Promise<Fuse<SchoolDocument>>((resolve, reject) => {
         .exec()
         .then(documents => {
           console.log('Loaded data');
-          resolve(new Fuse(documents, { keys: ['name'], threshold: 0.3 }));
+          resolve({
+            searcher: new Fuse(documents, { keys: ['name'], threshold: 0.3 }),
+            id: new Fuse(documents, { keys: ['id'], threshold: 0 }),
+          });
         });
     })
     .catch(reject);
 });
-
-export interface SchoolDocument extends Document {
-  id: string;
-  type: number;
-  name: string;
-  tel: string;
-  address: string;
-  homepage: string;
-}
 
 const SchoolSchema = new Schema<SchoolDocument>({
   id: String,
