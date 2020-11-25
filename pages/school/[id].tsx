@@ -1,11 +1,20 @@
-import { useRouter } from 'next/router';
+import axios, { AxiosResponse } from 'axios';
+import IconTitle from '../../components/atoms/IconTitle';
+import Local from '../../local';
+import { ApiInfo, ApiSearchItem } from '../../types/api';
 
-export default function School() {
-  const router = useRouter();
-  const { id } = router.query;
+export default function School(props) {
+  const info: ApiSearchItem = props.info;
   return (
     <>
-      <h1>{id}</h1>
+      <IconTitle content={info.name} href={'test'} />
     </>
   );
 }
+
+School.getInitialProps = async ({ query }) => {
+  const request: AxiosResponse<ApiInfo> = await axios.get(`${Local.API_ENDPOINT}/api/info`, {
+    params: { id: query.id },
+  });
+  return { info: request.data.result };
+};
