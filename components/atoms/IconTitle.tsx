@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import styled from 'styled-components';
+import Router from 'next/router';
 
 const Layout = styled.div`
   position: relative;
@@ -13,6 +14,7 @@ const Icon = styled.img`
   height: 24px;
   left: 24px;
   top: calc(50% - 24px / 2);
+  cursor: pointer;
 `;
 
 const Content = styled.p`
@@ -30,14 +32,17 @@ const Content = styled.p`
 
 interface Props {
   content: string;
-  href: string;
 }
 
 export default class IconTitle extends Component<Props, any> {
+  onBackClicked = () => {
+    Router.back();
+  };
+
   render() {
     return (
       <Layout>
-        <Icon src={'/icons/back.svg'} />
+        <Icon src={'/icons/back.svg'} onClick={this.onBackClicked} />
         <Content>{this.props.content}</Content>
       </Layout>
     );

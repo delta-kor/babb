@@ -7,7 +7,7 @@ export default function School(props) {
   const info: ApiSearchItem = props.info;
   return (
     <>
-      <IconTitle content={info.name} href={'test'} />
+      <IconTitle content={info.name} />
     </>
   );
 }
