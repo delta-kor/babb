@@ -12,9 +12,9 @@ export default function School(props) {
   );
 }
 
-export async function getStaticProps({ query }) {
+School.getInitialProps = async ({ query }) => {
   const request: AxiosResponse<ApiInfo> = await axios.get(`${Local.API_ENDPOINT}/api/info`, {
     params: { id: query.id },
   });
-  return { props: { info: request.data.result } };
-}
+  return { info: request.data.result };
+};
