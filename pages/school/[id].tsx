@@ -16,5 +16,5 @@ School.getInitialProps = async ({ query }) => {
   const request: AxiosResponse<ApiInfo> = await axios.get(`${Local.API_ENDPOINT}/api/info`, {
     params: { id: query.id },
   });
-  return { info: request.data.result };
+  if (request.data.status === 0) return { info: request.data.result };
 };
