@@ -20,7 +20,7 @@ const Name = styled.p`
   font-weight: 500;
   font-size: 24px;
   line-height: 35px;
-  color: #1287f3;
+  color: #373737;
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
