@@ -58,8 +58,8 @@ export default class Search extends Component<Props, State> {
   };
 
   onSearch = () => {
-    if (this.state.query?.trim()) Router.push(`/search?q=${this.state.query}`);
     this.inputRef.current.blur();
+    if (this.state.query?.trim()) Router.push(`/search?q=${this.state.query}`);
   };
 
   handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
