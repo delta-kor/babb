@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, Component, useRef } from 'react';
+import { ChangeEvent, KeyboardEvent, Component } from 'react';
 import Router from 'next/router';
 import styled from 'styled-components';
 
@@ -44,8 +44,6 @@ interface State {
 }
 
 export default class Search extends Component<Props, State> {
-  inputRef = useRef<HTMLInputElement>();
-
   constructor(props) {
     super(props);
     this.state = { query: this.props.query || null };
@@ -58,7 +56,6 @@ export default class Search extends Component<Props, State> {
   };
 
   onSearch = () => {
-    this.inputRef.current.blur();
     if (this.state.query?.trim()) Router.push(`/search?q=${this.state.query}`);
   };
 
@@ -75,7 +72,6 @@ export default class Search extends Component<Props, State> {
           placeholder={'학교검색'}
           onChange={this.onChange}
           onKeyDown={this.handleEnter}
-          ref={this.inputRef}
         />
         <Icon src={'/icons/search.svg'} alt={'검색'} onClick={this.onSearch} />
       </Layout>
