@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app';
-import '../styles/global.sass';
 import Head from 'next/head';
+import '../styles/global.sass';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function NextApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
